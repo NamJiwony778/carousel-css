@@ -1,0 +1,185 @@
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --absolute: absolute;
+  --hidden: hidden;
+  --visible: visible;
+  --transparent: transparent;
+}
+
+body,
+html,
+main {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  font-family: "Albert Sans", sans-serif;
+}
+
+.page-container {
+  position: relative;
+  overflow: var(--hidden);
+  height: 100%;
+}
+
+.slides-container {
+  height: 100%;
+  white-space: nowrap;
+  font-size: 0;
+  transition: 0.8s;
+}
+
+.slide {
+  display: inline-block;
+  vertical-align: top;
+  height: 100%;
+  width: 100%;
+  background: none 50% no-repeat;
+  background-size: cover;
+}
+
+/* next & previous buttons */
+.prevNext a {
+  cursor: pointer;
+  position: var(--absolute);
+  top: 50%;
+  width: auto;
+  padding: 26px;
+  color: var(--white);
+  font-weight: bold;
+  font-size: 58px;
+  text-decoration: none;
+}
+
+/*next button to the right */
+.prevNext a + a {
+  right: 0;
+}
+
+.text {
+  color: var(--white);
+  font-size: 35px;
+  padding: 8px 12px;
+  position: var(--absolute);
+  bottom: 15%;
+  width: 100%;
+  text-align: center;
+}
+
+.dot-btns-container {
+  position: var(--absolute);
+  z-index: 2;
+  bottom: 0;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.dot-btns-container > .dot-btn {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  line-height: 20px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid var(--white);
+  background-color: var(--white);
+}
+
+/* show and hide prev and next buttons */
+s:target ~ .prevNext > * {
+  visibility: var(--hidden);
+}
+
+#s1:target ~ .prevNext > *:nth-child(1) {
+  visibility: var(--visible);
+}
+#s2:target ~ .prevNext > *:nth-child(2) {
+  visibility: var(--visible);
+}
+#s3:target ~ .prevNext > *:nth-child(3) {
+  visibility: var(--visible);
+}
+
+/* show and hide slide text */
+s:target ~ .text-container > .text:nth-child(2),
+.text:nth-child(3) {
+  visibility: var(--hidden);
+}
+
+#s1:target ~ .text-container > .text:nth-child(1) {
+  visibility: var(--visible);
+}
+
+#s1:target ~ .text-container > .text:nth-child(2),
+.text:nth-child(3) {
+  visibility: var(--hidden);
+}
+
+#s2:target ~ .text-container > .text:nth-child(2) {
+  visibility: var(--visible);
+}
+
+#s2:target ~ .text-container > .text:nth-child(1),
+.text:nth-child(3) {
+  visibility: var(--hidden);
+}
+
+#s3:target ~ .text-container > .text:nth-child(3) {
+  visibility: var(--visible);
+}
+
+#s3:target ~ .text-container > .text:nth-child(1),
+.text:nth-child(2) {
+  visibility: var(--hidden);
+}
+
+/* make slider interactive */
+#s1:target ~ .slides-container {
+  transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+}
+
+#s2:target ~ .slides-container {
+  transform: translateX(-100%);
+  -webkit-transform: translateX(-100%);
+}
+
+#s3:target ~ .slides-container {
+  transform: translateX(-200%);
+  -webkit-transform: translateX(-200%);
+}
+
+/* make active btn background */
+
+s:target ~ .dot-btns-container > .dot-btn:nth-child(1) {
+  background-color: var(--white);
+}
+
+#s1:target ~ .dot-btns-container > .dot-btn:nth-child(1) {
+  background-color: var(--white);
+}
+
+#s1:target ~ .dot-btns-container > .dot-btn:nth-child(2),
+.dot-btn:nth-child(3) {
+  background-color: var(--transparent);
+}
+
+#s2:target ~ .dot-btns-container > .dot-btn:nth-child(2) {
+  background-color: var(--white);
+}
+
+#s2:target ~ .dot-btns-container > .dot-btn:nth-child(1),
+.dot-btn:nth-child(3) {
+  background-color: var(--transparent);
+}
+
+#s3:target ~ .dot-btns-container > .dot-btn:nth-child(3) {
+  background-color: var(--white);
+}
+
+#s3:target ~ .dot-btns-container > .dot-btn:nth-child(1),
+.dot-btn:nth-child(2) {
+  background-color: var(--transparent);
+}
